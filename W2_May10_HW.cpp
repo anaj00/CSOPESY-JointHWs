@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <cstdlib> // For system("cls")
+#include <cstdlib> // for cls
 
 void printHeader() {
     std::cout << R"(
@@ -10,13 +10,18 @@ void printHeader() {
                      \     \____/        \/    |    \    |    |        \/        \ \____   |
                       \______  /_______  /\_______  /____|   /_______  /_______  / / ______|
                              \/        \/         \/                 \/        \/  \/       
-                    )" << std::endl;
+    )" << std::endl;
 }
 
 void processCommand(const std::string& command) {
 
-    if (command == "marquee" || command == "screen" || command == "process-smi" ||
-        command == "nvidia-smi" || command == "clear" || command == "exit") {
+    if (command == "marquee" 
+        || command == "screen" 
+        || command == "process-smi" 
+        || command == "nvidia-smi" 
+        || command == "clear" 
+        || command == "exit") {
+
         std::cout << command << " command recognized. Doing something.\n";
 
         if (command == "clear") {
@@ -25,21 +30,23 @@ void processCommand(const std::string& command) {
         }
 
         else if (command == "exit") {
-            exit(0); // Exit the application
+            exit(0);
         }
     }
     else {
-        std::cout << "Invalid command. \n";
+        std::cout << "Invalid command.\n";
     }
 }
 
 int main() {
     std::string command;
     printHeader();
+
     while (true) {
         std::cout << "Enter a command: ";
         std::cin >> command;
         processCommand(command);
     }
+
     return 0;
 }

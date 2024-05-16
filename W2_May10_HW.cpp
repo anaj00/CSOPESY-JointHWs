@@ -25,20 +25,21 @@ void processCommand(const std::string& command) {
     if (command == "screen") {
         std::cout << command << " command recognized. Doing something.\n";
     } else if (command == "marquee" 
-            || command == "process-smi" 
-            || command == "nvidia-smi" 
-            || command == "clear" 
-            || command == "exit") {
+        || command == "process-smi" 
+        || command == "nvidia-smi" 
+        || command == "clear" 
+        || command == "exit") {
             
-                std::cout << command << " command recognized. Doing something.\n";
-        
-        if (command == "clear") {
-            system("cls"); 
-            printHeader(); 
-        }
+            std::cout << command << " command recognized. Doing something.\n";
+            
+            if (command == "clear") {
+                system("cls"); 
+                printHeader(); 
+            }
 
-        else if (command == "exit") {
-            exit(0);
+            else if (command == "exit") {
+                std::cout << RED << "Thank you for using CSOPESY command line interface. Goodbye\n" << RESET;
+                exit(0);
         }
     }
     else {

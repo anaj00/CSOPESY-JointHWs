@@ -14,8 +14,11 @@ void printHeader() {
 }
 
 void processCommand(const std::string& command) {
-
-    if (command == "marquee" || command == "screen" || command == "process-smi" ||
+    //screen 
+    if (command == "screen") {
+        std::cout << command << " command recognized. Doing something.\n";
+    }
+    else if (command == "marquee" || command == "process-smi" ||
         command == "nvidia-smi" || command == "clear" || command == "exit") {
         std::cout << command << " command recognized. Doing something.\n";
 
@@ -38,7 +41,7 @@ int main() {
     printHeader();
     while (true) {
         std::cout << "Enter a command: ";
-        std::cin >> command;
+        std::getline(std::cin, command);
         processCommand(command);
     }
     return 0;

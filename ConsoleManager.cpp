@@ -11,6 +11,14 @@ ConsoleManager::~ConsoleManager() {
     // delete prevScreen;
 }
 
+// Interaction with MainMenuScreen
+void ConsoleManager::startConsole() {
+    bool flag = false;
+    if (!flag) {
+        flag = mainMenuScreen->process();
+    }
+}
+
 // Getters
 const std::string* ConsoleManager::getCurrentScreen() const {
     return currentScreen;
@@ -30,9 +38,4 @@ void ConsoleManager::setPrevScreen(std::string* screen) {
     prevScreen = screen;
 }
 
-// Interaction with MainMenuScreen
-void ConsoleManager::showMainMenu() {
-    if (mainMenuScreen) {
-        mainMenuScreen->process();
-    }
-}
+

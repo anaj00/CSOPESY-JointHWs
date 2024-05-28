@@ -5,10 +5,17 @@
 #include <string.h>
 #include <iostream>
 #include <sstream>
+#include <map>
+
+#include "ResourceScreen.h"
+
 
 class MainMenuScreen {
 public:
+    bool process();
+
+private:
     void printHeader();
     void processCommand(const std::string& command);
-    bool process();
+    std::map<std::string, ResourceScreen> screens; // where all the ResourceScreens are stored
 };

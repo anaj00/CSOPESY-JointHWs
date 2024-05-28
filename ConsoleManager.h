@@ -25,5 +25,5 @@ public:
     void setPrevScreen(std::string* screen);
 
     // Interaction with MainMenuScreen
-    void showMainMenu();
+    void startConsole();
 };

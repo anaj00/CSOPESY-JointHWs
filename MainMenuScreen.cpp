@@ -1,4 +1,5 @@
 #include "MainMenuScreen.h"
+#include "ResourceScreen.h"
 
 void MainMenuScreen::printHeader() {
     std::cout << R"(
@@ -24,13 +25,26 @@ void MainMenuScreen::processCommand(const std::string& command) {
     if (iss >> cmd) {
         if (cmd == "screen") {
             iss >> option >> argument; // Read the next two tokens (option and argument)
-            if (option == "-r") {
+
+            if (option == "-r" || option == "-s") {
+
                 std::cout << "screen -r " << argument << " command recognized. Doing something.\n";
-                // Add your specific handling for screen -r <name> here
+                if (screens.find(argument) != screens.end()) {
+                    // Redraw the existing screen
+                    screens[argument].displayScreen();
+                }
+
+                else {
+                    // Create a new screen and display it
+                    ResourceScreen newScreen(argument);
+                    screens[argument] = newScreen;
+                    screens[argument].displayScreen();
+                }
             }
-            else if (option == "-s") {
+            /* else if (option == "-s") {
                 
-            }
+            }*/
+
             else {
                 std::cout << "screen not command recognized. Doing something.\n";
                 // Add your specific handling for screen here
@@ -45,7 +59,6 @@ void MainMenuScreen::processCommand(const std::string& command) {
             }
             else if (cmd == "exit") {
                 std::cout << "Thank you for using CSOPESY command line interface. Goodbye\n";
-                exit(0);
             }
         }
         else {
@@ -58,13 +71,13 @@ bool MainMenuScreen::process() {
     std::string command;
     printHeader(); // Initial print of the header
 
-    while (true) {
+    bool flag = false;
+    while (!flag) {
         std::cout << "Enter a command: ";
         std::getline(std::cin, command);
-        processCommand(command); // Header will print again only if "clear" command is used
+        processCommand(command);
+        flag = true;
     }
 
     return true;
 }
-
-=

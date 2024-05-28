@@ -4,7 +4,7 @@
 int main() {
     MainMenuScreen mainMenu;
     ConsoleManager consoleManager(nullptr, &mainMenu);
-    consoleManager.showMainMenu();
+    consoleManager.startConsole();
 
     return 0;
 }

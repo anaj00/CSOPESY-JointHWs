@@ -7,6 +7,7 @@
 class ResourceScreen
 {
 public:
+	ResourceScreen();
 	ResourceScreen(std::string processName);
 	void displayHeader();
 	void displayScreen();

@@ -1,45 +1,29 @@
 #pragma once
 
 #include <string>
+#include "MainMenuScreen.h"
 
-// TODO: Please put the functions in the .cpp file
-
-class ConsoleManager
-{
-
+class ConsoleManager {
 private:
     std::string* currentScreen;
     std::string* prevScreen;
+    MainMenuScreen* mainMenuScreen;
 
 public:
     // Constructor
-    ConsoleManager(std::string* initialScreen = nullptr)
-        : currentScreen(initialScreen), prevScreen(nullptr) {}
+    ConsoleManager(std::string* initialScreen = nullptr, MainMenuScreen* mainMenuScreen = nullptr);
 
     // Destructor
-    ~ConsoleManager() {
-        // Optionally handle cleanup if you are responsible for the memory
-        // delete currentScreen;
-        // delete prevScreen;
-    }
+    ~ConsoleManager();
 
     // Getters
-    const std::string* getCurrentScreen() const {
-        return currentScreen;
-    }
-
-    const std::string* getPrevScreen() const {
-        return prevScreen;
-    }
+    const std::string* getCurrentScreen() const;
+    const std::string* getPrevScreen() const;
 
     // Setters
-    void setCurrentScreen(std::string* screen) {
-        prevScreen = currentScreen; // Update prevScreen to currentScreen pointer
-        currentScreen = screen;     // Update currentScreen to new screen pointer
-    }
+    void setCurrentScreen(std::string* screen);
+    void setPrevScreen(std::string* screen);
 
-    void setPrevScreen(std::string* screen) {
-        prevScreen = screen;
-    }
+    // Interaction with MainMenuScreen
+    void showMainMenu();
 };
-

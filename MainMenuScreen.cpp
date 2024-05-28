@@ -15,7 +15,7 @@ void MainMenuScreen::printHeader() {
     std::cout << "Type 'exit' to quit, 'clear' to clear the screen.\n";
 }
 
-void MainMenuScreen::processCommand(const std::string& command) {
+bool MainMenuScreen::processCommand(const std::string& command) {
     std::istringstream iss(command); // Create a string stream from the command
     std::string token;
     std::string cmd;
@@ -59,12 +59,15 @@ void MainMenuScreen::processCommand(const std::string& command) {
             }
             else if (cmd == "exit") {
                 std::cout << "Thank you for using CSOPESY command line interface. Goodbye\n";
+                return true;
             }
         }
         else {
             std::cout << "Invalid command.\n";
         }
     }
+
+    return false;
 }
 
 bool MainMenuScreen::process() {
@@ -75,8 +78,9 @@ bool MainMenuScreen::process() {
     while (!flag) {
         std::cout << "Enter a command: ";
         std::getline(std::cin, command);
-        processCommand(command);
-        flag = true;
+        flag = processCommand(command);
+        system("cls");
+        printHeader();
     }
 
     return true;

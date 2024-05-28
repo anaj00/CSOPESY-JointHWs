@@ -1,6 +1,4 @@
 #include "MainMenuScreen.h"
-#include <iostream> // Ensure you include this header for std::cout
-#include <string>
 
 void MainMenuScreen::printHeader() {
     std::cout << R"(
@@ -17,23 +15,42 @@ void MainMenuScreen::printHeader() {
 }
 
 void MainMenuScreen::processCommand(const std::string& command) {
-    if (command == "screen") {
-        std::cout << command << " command recognized. Doing something.\n";
-    }
-    else if (command == "marquee" || command == "process-smi" || command == "nvidia-smi" || command == "clear" || command == "exit") {
-        std::cout << command << " command recognized. Doing something.\n";
+    std::istringstream iss(command); // Create a string stream from the command
+    std::string token;
+    std::string cmd;
+    std::string option;
+    std::string argument;
 
-        if (command == "clear") {
-            system("cls"); // Use "clear" if on a Unix-like system
-            printHeader(); // Moved here to print the header only after clearing the screen
+    if (iss >> cmd) {
+        if (cmd == "screen") {
+            iss >> option >> argument; // Read the next two tokens (option and argument)
+            if (option == "-r") {
+                std::cout << "screen -r " << argument << " command recognized. Doing something.\n";
+                // Add your specific handling for screen -r <name> here
+            }
+            else if (option == "-s") {
+                
+            }
+            else {
+                std::cout << "screen not command recognized. Doing something.\n";
+                // Add your specific handling for screen here
+            }
         }
-        else if (command == "exit") {
-            std::cout << "Thank you for using CSOPESY command line interface. Goodbye\n";
-            exit(0);
+        else if (cmd == "marquee" || cmd == "process-smi" || cmd == "nvidia-smi" || cmd == "clear" || cmd == "exit") {
+            std::cout << cmd << " command recognized. Doing something.\n";
+
+            if (cmd == "clear") {
+                system("cls"); // Use "clear" if on a Unix-like system
+                printHeader(); // Print the header after clearing the screen
+            }
+            else if (cmd == "exit") {
+                std::cout << "Thank you for using CSOPESY command line interface. Goodbye\n";
+                exit(0);
+            }
         }
-    }
-    else {
-        std::cout << "Invalid command.\n";
+        else {
+            std::cout << "Invalid command.\n";
+        }
     }
 }
 
@@ -49,3 +66,5 @@ bool MainMenuScreen::process() {
 
     return true;
 }
+
+=

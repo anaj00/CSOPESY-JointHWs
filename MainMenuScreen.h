@@ -1,6 +1,10 @@
 #pragma once
 
 #include <string>
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <sstream>
 
 class MainMenuScreen {
 public:

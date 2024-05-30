@@ -6,9 +6,7 @@ ConsoleManager::ConsoleManager(std::string* initialScreen, MainMenuScreen* mainM
 
 // Destructor
 ConsoleManager::~ConsoleManager() {
-    // Optionally handle cleanup if you are responsible for the memory
-    // delete currentScreen;
-    // delete prevScreen;
+ 
 }
 
 // Interaction with MainMenuScreen

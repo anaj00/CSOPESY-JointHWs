@@ -16,6 +16,8 @@ public:
 
 private:
     void printHeader();
+    bool screenExists(const std::string& name);
     bool processCommand(const std::string& command);
     std::map<std::string, ResourceScreen> screens; // where all the ResourceScreens are stored
+   
 };

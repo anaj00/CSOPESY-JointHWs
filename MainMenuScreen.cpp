@@ -25,50 +25,65 @@ bool MainMenuScreen::processCommand(const std::string& command) {
     if (iss >> cmd) {
         if (cmd == "screen") {
             iss >> option >> argument; // Read the next two tokens (option and argument)
+            bool flagFound = false;
 
-            if (option == "-r" || option == "-s") {
-
-                std::cout << "screen -r " << argument << " command recognized. Doing something.\n";
-                if (screens.find(argument) != screens.end()) {
-                    // Redraw the existing screen
+            if (option == "-r") {
+                bool flagFound = screenExists(argument);
+                if (!flagFound) {
+                    std::cout << "Screen does not exist create it first" << std::endl;
+                }
+                else {
                     screens[argument].displayScreen();
                 }
-
-                else {
-                    // Create a new screen and display it
+            }
+            else if (option == "-s") {
+                bool flagFound = screenExists(argument);
+                if (!flagFound) {
                     ResourceScreen newScreen(argument);
                     screens[argument] = newScreen;
                     screens[argument].displayScreen();
                 }
+                else {
+                    std::cout << "Screen already exists." << std::endl;
+                }
+               
             }
-            /* else if (option == "-s") {
-                
-            }*/
-
+          
             else {
-                std::cout << "screen not command recognized. Doing something.\n";
-                // Add your specific handling for screen here
+                std::cout << "screen command not recognized. Doing something." << std::endl;
+
             }
         }
         else if (cmd == "marquee" || cmd == "process-smi" || cmd == "nvidia-smi" || cmd == "clear" || cmd == "exit") {
-            std::cout << cmd << " command recognized. Doing something.\n";
+            std::cout << cmd << " command recognized. Doing something." << std::endl;
 
             if (cmd == "clear") {
-                system("cls"); // Use "clear" if on a Unix-like system
-                printHeader(); // Print the header after clearing the screen
+                system("cls"); 
+                printHeader(); 
             }
             else if (cmd == "exit") {
-                std::cout << "Thank you for using CSOPESY command line interface. Goodbye\n";
+                std::cout << "Thank you for using CSOPESY command line interface. Goodbye" << std::endl;
                 return true;
             }
         }
         else {
-            std::cout << "Invalid command.\n";
+            std::cout << "Invalid command" << std::endl;
         }
     }
 
     return false;
 }
+
+bool MainMenuScreen::screenExists(const std::string& name) {
+    for (const auto& pair : screens) {
+        if (pair.first == name) { // Compare std::string objects using ==
+            std::cout << name << " found\n";
+            return true;
+        }
+    }
+    return false;
+}
+
 
 bool MainMenuScreen::process() {
     std::string command;
@@ -79,8 +94,7 @@ bool MainMenuScreen::process() {
         std::cout << "Enter a command: ";
         std::getline(std::cin, command);
         flag = processCommand(command);
-        system("cls");
-        printHeader();
+       
     }
 
     return true;

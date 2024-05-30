@@ -17,7 +17,4 @@ private:
 	int currLine;
 	int totalLines;
 	std::string creationTimestamp;
-
-
 };
-

@@ -33,15 +33,25 @@ bool MainMenuScreen::processCommand(const std::string& command) {
                     std::cout << "Screen does not exist create it first" << std::endl;
                 }
                 else {
+                    system("cls");
+
                     screens[argument].displayScreen();
+
+                    system("cls");
+                    printHeader();
                 }
             }
             else if (option == "-s") {
                 bool flagFound = screenExists(argument);
                 if (!flagFound) {
+                    system("cls");
+
                     ResourceScreen newScreen(argument);
                     screens[argument] = newScreen;
                     screens[argument].displayScreen();
+
+                    system("cls");
+                    printHeader();
                 }
                 else {
                     std::cout << "Screen already exists." << std::endl;
@@ -91,10 +101,9 @@ bool MainMenuScreen::process() {
 
     bool flag = false;
     while (!flag) {
-        std::cout << "Enter a command: ";
+        std::cout << std::endl << "Enter a command: ";
         std::getline(std::cin, command);
         flag = processCommand(command);
-       
     }
 
     return true;

@@ -5,8 +5,8 @@
 ResourceScreen::ResourceScreen() :processName("A process"), currLine(0), totalLines(100) {
 
 	// Get current time
-	std::time_t now = std::time(nullptr);
-	std::tm localTime;
+	time_t now = time(nullptr);
+	tm localTime;
 	
 	localtime_s(&localTime, &now);
 
@@ -14,16 +14,16 @@ ResourceScreen::ResourceScreen() :processName("A process"), currLine(0), totalLi
 	// Format the timestamp
 	char timestampBuffer[24]; 
 	size_t bufferSize = sizeof(timestampBuffer);
-	std::strftime(timestampBuffer, bufferSize, "%m/%d/%Y, %I:%M:%S %p", &localTime);
+	strftime(timestampBuffer, bufferSize, "%m/%d/%Y, %I:%M:%S %p", &localTime);
 	creationTimestamp = timestampBuffer;
 	
 }
-ResourceScreen::ResourceScreen(std::string processName)
+ResourceScreen::ResourceScreen(string processName)
 	:processName(processName), currLine(0), totalLines(100) {
 
 	// Get current time
-	std::time_t now = std::time(nullptr);
-	std::tm localTime;
+	time_t now = time(nullptr);
+	tm localTime;
 	localtime_s(&localTime, &now);
 
 	// Format the timestamp
@@ -33,23 +33,23 @@ ResourceScreen::ResourceScreen(std::string processName)
 }
 
 void ResourceScreen::displayHeader() {
-	std::cout << "Process: " << processName << std::endl;
-	std::cout << "Current instruction line: " << currLine << std::endl;
-	std::cout << "Total lines: " << totalLines << std::endl;
-	std::cout << "Creation timestamp: " << creationTimestamp << std::endl << std::endl;
+	cout << "Process: " << processName << endl;
+	cout << "Current instruction line: " << currLine << endl;
+	cout << "Total lines: " << totalLines << endl;
+	cout << "Creation timestamp: " << creationTimestamp << endl << endl;
 }
 
 void ResourceScreen::displayScreen() {
-	std::string input;
+	string input;
 	displayHeader();
 
-	std::cout << "root:\\> ";
-	std::getline(std::cin, input);
+	cout << "root:\\> ";
+	getline(cin, input);
 
 	if (input == "exit") {
 		return;
 	}
 	else {
-		std::cout << "Invalid command.\n";
+		cout << "Invalid command." << endl;
 	}
 }

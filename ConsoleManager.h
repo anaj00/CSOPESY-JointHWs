@@ -3,26 +3,27 @@
 #include <string>
 #include "MainMenuScreen.h"
 
+using namespace std;
 class ConsoleManager {
 private:
-    std::string* currentScreen;
-    std::string* prevScreen;
+    string* currentScreen;
+    string* prevScreen;
     MainMenuScreen* mainMenuScreen;
 
 public:
     // Constructor
-    ConsoleManager(std::string* initialScreen = nullptr, MainMenuScreen* mainMenuScreen = nullptr);
+    ConsoleManager(string* initialScreen = nullptr, MainMenuScreen* mainMenuScreen = nullptr);
 
     // Destructor
     ~ConsoleManager();
 
     // Getters
-    const std::string* getCurrentScreen() const;
-    const std::string* getPrevScreen() const;
+    const string* getCurrentScreen() const;
+    const string* getPrevScreen() const;
 
     // Setters
-    void setCurrentScreen(std::string* screen);
-    void setPrevScreen(std::string* screen);
+    void setCurrentScreen(string* screen);
+    void setPrevScreen(string* screen);
 
     // Interaction with MainMenuScreen
     void startConsole();

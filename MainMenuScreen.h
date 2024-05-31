@@ -9,6 +9,7 @@
 
 #include "ResourceScreen.h"
 
+using namespace std;
 
 class MainMenuScreen {
 public:
@@ -16,8 +17,8 @@ public:
 
 private:
     void printHeader();
-    bool screenExists(const std::string& name);
-    bool processCommand(const std::string& command);
-    std::map<std::string, ResourceScreen> screens; // where all the ResourceScreens are stored
+    bool screenExists(const string& name);
+    bool processCommand(const string& command);
+    map<string, ResourceScreen> screens; // where all the ResourceScreens are stored
    
 };

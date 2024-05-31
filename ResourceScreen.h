@@ -4,17 +4,18 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
 class ResourceScreen
 {
 public:
 	ResourceScreen();
-	ResourceScreen(std::string processName);
+	ResourceScreen(string processName);
 	void displayHeader();
 	void displayScreen();
 
 private:
-	std::string processName;
+	string processName;
 	int currLine;
 	int totalLines;
-	std::string creationTimestamp;
+	string creationTimestamp;
 };
